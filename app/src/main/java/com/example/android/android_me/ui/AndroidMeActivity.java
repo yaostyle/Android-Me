@@ -31,27 +31,31 @@ public class AndroidMeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_android_me);
 
-        // Create a new BodyPartFragment instance and display it
-        BodyPartFragment headFragment = new BodyPartFragment();
-        BodyPartFragment bodyFragment = new BodyPartFragment();
-        BodyPartFragment legFragment = new BodyPartFragment();
+        // Only create new fragments when tehre is no previously saved state
+        if (savedInstanceState == null) {
 
-        headFragment.setmImageIds(AndroidImageAssets.getHeads());
-        headFragment.setmListIndex(1);
+            // Create a new BodyPartFragment instance and display it
+            BodyPartFragment headFragment = new BodyPartFragment();
+            BodyPartFragment bodyFragment = new BodyPartFragment();
+            BodyPartFragment legFragment = new BodyPartFragment();
 
-        bodyFragment.setmImageIds(AndroidImageAssets.getBodies());
-        bodyFragment.setmListIndex(1);
+            headFragment.setmImageIds(AndroidImageAssets.getHeads());
+            headFragment.setmListIndex(1);
 
-        legFragment.setmImageIds(AndroidImageAssets.getLegs());
-        legFragment.setmListIndex(1);
+            bodyFragment.setmImageIds(AndroidImageAssets.getBodies());
+            bodyFragment.setmListIndex(1);
 
-        // Use a FragmentManager and transaction to add the fragment to the screen
-        FragmentManager fragmentManager = getSupportFragmentManager();
+            legFragment.setmImageIds(AndroidImageAssets.getLegs());
+            legFragment.setmListIndex(1);
 
-        fragmentManager.beginTransaction()
-                .add(R.id.head_container, headFragment)
-                .add(R.id.body_container, bodyFragment)
-                .add(R.id.leg_container, legFragment)
-                .commit();
+            // Use a FragmentManager and transaction to add the fragment to the screen
+            FragmentManager fragmentManager = getSupportFragmentManager();
+
+            fragmentManager.beginTransaction()
+                    .add(R.id.head_container, headFragment)
+                    .add(R.id.body_container, bodyFragment)
+                    .add(R.id.leg_container, legFragment)
+                    .commit();
+        }
     }
 }
